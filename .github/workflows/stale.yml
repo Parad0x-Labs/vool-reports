@@ -1,0 +1,23 @@
+name: Close quiet reports
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          only-labels: needs-info
+          days-before-stale: 14
+          days-before-close: 7
+          days-before-pr-stale: -1
+          days-before-pr-close: -1
+          stale-issue-message: "We still need a bit more to look into this. It will close in 7 days if we don't hear back; you can reopen it any time."
+          close-issue-message: "Closing for now since we didn't hear back. Reopen it or send a new report from VOOL any time."

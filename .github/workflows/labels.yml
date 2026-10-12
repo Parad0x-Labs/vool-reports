@@ -1,0 +1,28 @@
+name: Set up labels
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/labels.yml]
+
+permissions:
+  issues: write
+
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh label create wrong-answer --force --color D93F0B --description "VOOL answered something wrong, outdated, unsafe, or not what was asked"
+          gh label create bug          --force --color B60205 --description "Something in the app broke"
+          gh label create from-app     --force --color 0E8A16 --description "Sent through VOOL's report button"
+          gh label create needs-scrub  --force --color FBCA04 --description "Something private was masked; clear the edit history"
+          gh label create needs-info   --force --color C5DEF5 --description "Waiting on the reporter; closes after 21 quiet days"
+          gh label create duplicate    --force --color CFD3D7 --description "Same fingerprint as an earlier report"
+          gh label create confirmed    --force --color 5319E7 --description "Reproduced by a maintainer"
+          gh label create fixed        --force --color 1D76DB --description "Fixed in a release"

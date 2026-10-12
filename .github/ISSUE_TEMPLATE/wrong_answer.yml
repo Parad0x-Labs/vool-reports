@@ -1,0 +1,17 @@
+name: Wrong answer
+description: VOOL answered something wrong, outdated, unsafe, or not what you asked.
+title: "[wrong-answer] "
+labels: ["wrong-answer"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The easiest way: press **Report** under the answer in VOOL. It fills this in for you, with private details removed.
+        Everything here is public. Please read the report once more before you press Submit.
+  - type: textarea
+    id: report
+    attributes:
+      label: Report
+      description: The report from VOOL. If you write it yourself, say what you asked, what VOOL said, and what it should have said.
+    validations:
+      required: true

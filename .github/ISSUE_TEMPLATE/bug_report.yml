@@ -1,0 +1,17 @@
+name: Something broke
+description: A crash, an error, or a part of VOOL that does not work.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The easiest way: choose **Report a problem** in VOOL. It fills this in for you, with private details removed.
+        Everything here is public. Please read the report once more before you press Submit.
+  - type: textarea
+    id: report
+    attributes:
+      label: Report
+      description: The report from VOOL. If you write it yourself, say what you did, what you expected, and what happened.
+    validations:
+      required: true
